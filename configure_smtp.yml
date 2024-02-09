@@ -1,0 +1,50 @@
+---
+- name: install and configure nginx for http and https
+  hosts: webservers
+  become: true
+
+  tasks: 
+
+    - name: Install and configure nginx for http and https
+      ansible.builtin.yum:
+        name:
+          - nginx
+          - httpd-tools
+          - certbot
+        state: installed
+
+    - name: Copy over PKI public certificates and provate keys
+      ansible.builtin.copy:
+        src: "{{ item }}"
+        dest: /etc/pki/tls/certs/
+        mode: "0644"
+      with_items:
+        - /etc/pki/tls/certs/ca-bundle.crt
+        - /etc/pki/tls/certs/ca-bundle.crt
+
+    - name: Start and enable the nginx service
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: true
+
+    - name: Test the webserver on https   
+      ansible.builtin.uri:
+        url: http://localhost:80
+        return_content: true
+
+
+
+
+
+
+  
+
+
+
+    
+
+
+
+
+

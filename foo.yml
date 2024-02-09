@@ -1,0 +1,33 @@
+---
+- name: Testing
+  hosts: xerxes.thenorvilles.com
+  gather_facts: false
+  remote_user: cnorville
+  become: true
+
+  vars:
+    yaml_vars_file: /tmp/path/variable.yml
+
+  tasks:
+
+    - name: Clone
+      ansible.builtin.git:
+        repo: "https://github.com/cnorville90/ansible_aws.git"
+        dest: /tmp/work_directory/
+        version: master
+      delegate_to: localhost
+
+    - name: List repo files
+      command: ls -l /tmp/work_directory/
+      register: output
+      delegate_to: localhost
+
+    - name: include the vars from the repo
+      include_vars:
+        file: /tmp/work_directory/vars.yml
+      register: some_output
+      delegate_to: localhost
+
+    - name: Dump out some_output
+      debug:
+        var: some_output

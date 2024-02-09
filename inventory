@@ -1,0 +1,7 @@
+[homelab]
+xerxes.thenorvilles.com 
+caesar.thenorvilles.com
+attila.thenorvilles.com
+
+[homelab:vars]
+ansible_user=cnorville

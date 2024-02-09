@@ -1,0 +1,35 @@
+---
+- name: A Playbook to copy tls certs to Homelab machines for cockpit
+  hosts: homelab
+  gather_facts: false
+  become: true
+  vars: 
+    cert_dir: '/etc/cockpit/ws-certs.d'
+    domain: thenorvilles
+
+  tasks:
+
+    - name: Copy the certificate file to the target server
+      ansible.builtin.copy:
+        src: cert.pem
+        dest: "{{ cert_dir }}/{{ domain }}.cert"
+        mode: '0644'
+        owner: root
+        group: root
+      notify: restart_cockpit
+
+    - name: Copy the cert key to the target server
+      ansible.builtin.copy:
+        src: privkey.pem
+        dest: "{{ cert_dir }}/{{ domain }}.key"
+        mode: '0644'
+        owner: root
+        group: root
+      notify: restart_cockpit
+
+  handlers:
+
+    - name: restart_cockpit
+      ansible.builtin.service:
+        name: cockpit.socket
+        state: restarted

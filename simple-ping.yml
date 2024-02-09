@@ -1,0 +1,11 @@
+---
+- name: Just a simple Ping test for Ansible connectivity
+  hosts: homelab
+  gather_facts: False
+
+  tasks: 
+
+    - name: Ping a host
+      ping: 
+
+
