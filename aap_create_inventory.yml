@@ -9,5 +9,5 @@
       ansible.controller.inventory:
         name: "The Rick James Inventory"
         description: "The Best Inventory of all Time!"
-        organization: default
+        organization: Default
         state: present
