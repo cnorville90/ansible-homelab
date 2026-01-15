@@ -1,6 +1,6 @@
 ---
 - name: A Playbook to copy tls certs to Homelab machines for cockpit
-  hosts: homelab
+  hosts: cockpits
   gather_facts: false
   become: true
   vars: 
@@ -11,7 +11,7 @@
 
     - name: Copy the certificate file to the target server
       ansible.builtin.copy:
-        src: cert.pem
+        src: fullchain.pem
         dest: "{{ cert_dir }}/{{ domain }}.cert"
         mode: '0644'
         owner: root

@@ -1,0 +1,13 @@
+---
+- name: Create an Inventory on the AAP Host
+  hosts: localhost
+  gather_facts: false
+  
+  tasks: 
+
+    - name: Add an inventory to AAP
+      ansible.controller.inventory:
+        name: "The Rick James Inventory"
+        description: "The Best Inventory of all Time!"
+        organization: default
+        state: present

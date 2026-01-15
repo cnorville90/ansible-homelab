@@ -1,0 +1,63 @@
+---
+- name: A Playbook to copy tls certs to Homelab machines for cockpit
+  hosts: all
+  gather_facts: false
+  become: true
+  vars: 
+    controller_cert_dir: '/etc/tower'
+    eda_cert_dir: '/etc/ansible-automation-platform/eda'
+    domain: thenorvilles
+
+  tasks:
+
+    - name: Copy the certificate file to the controller server
+      ansible.builtin.copy:
+        src: fullchain.pem
+        dest: "{{ controller_cert_dir }}/tower.cert"
+        mode: '0600'
+        owner: root
+        group: root
+      notify: restart_controller
+      when: inventory_hostname in groups["controller"]
+
+    - name: Copy the cert key to the controller server
+      ansible.builtin.copy:
+        src: privkey.pem
+        dest: "{{ controller_cert_dir }}/tower.key"
+        mode: '0600'
+        owner: root
+        group: root
+      notify: restart_controller
+      when: inventory_hostname in groups["controller"]
+
+    - name: Copy the certificate file to the eda server
+      ansible.builtin.copy:
+        src: fullchain.pem
+        dest: "{{ eda_cert_dir }}/server.cert"
+        mode: '0600'
+        owner: root
+        group: root
+      notify: restart_eda
+      when: inventory_hostname in groups["eda"]
+
+    - name: Copy the cert key to the eda server
+      ansible.builtin.copy:
+        src: privkey.pem
+        dest: "{{ eda_cert_dir }}/server.key"
+        mode: '0600'
+        owner: root
+        group: root
+      notify: restart_eda
+      when: inventory_hostname in groups["eda"]
+
+  handlers:
+
+    - name: restart_controller
+      ansible.builtin.service:
+        name: automation-controller
+        state: restarted
+
+    - name: restart_eda
+      ansible.builtin.service:
+        name: nginx
+        state: restarted

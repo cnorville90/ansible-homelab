@@ -1,11 +1,9 @@
 ---
 - name: Just a simple Ping test for Ansible connectivity
-  hosts: homelab
-  gather_facts: False
+  hosts: cockpits
+  gather_facts: false
 
-  tasks: 
+  tasks:
 
     - name: Ping a host
-      ping: 
-
-
+      ansible.builtin.ping:

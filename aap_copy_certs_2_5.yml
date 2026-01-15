@@ -1,0 +1,38 @@
+---
+- name: A Playbook to copy tls certs to the AWS AAP 2.5 Instance
+  hosts: aws_lab
+  gather_facts: false
+  become: true
+  vars: 
+    controller_cert_dir: '/etc/tower'
+    eda_cert_dir: '/etc/ansible-automation-platform/eda'
+    domain: thenorvilles
+
+  tasks:
+
+    - name: Copy the certificate file to the controller server
+      ansible.builtin.copy:
+        src: fullchain.pem
+        dest: "{{ controller_cert_dir }}/tower.cert"
+        mode: '0600'
+        owner: root
+        group: root
+      notify: restart_controller
+      when: inventory_hostname in groups["aws_lab"]
+
+    - name: Copy the cert key to the controller server
+      ansible.builtin.copy:
+        src: privkey.pem
+        dest: "{{ controller_cert_dir }}/tower.key"
+        mode: '0600'
+        owner: root
+        group: root
+      notify: restart_controller
+      when: inventory_hostname in groups["aws_lab"]
+
+  handlers:
+
+    - name: restart_controller
+      ansible.builtin.service:
+        name: automation-controller
+        state: restarted

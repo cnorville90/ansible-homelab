@@ -1,0 +1,19 @@
+---
+- name: Just a simple Ping test for Ansible connectivity
+  hosts: aws_lab
+  gather_facts: false
+
+  tasks:
+
+    - name: Ping a host
+      ping:
+
+    - name: Dump out facts
+      debug:
+        var: ansible_facts
+
+    - name: Update something
+      package:
+        name: tree
+        state: latest
+      when: ansible_pkg_mgr in ['yum', 'dnf']

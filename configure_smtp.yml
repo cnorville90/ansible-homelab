@@ -28,23 +28,8 @@
         state: started
         enabled: true
 
-    - name: Test the webserver on https   
+    - name: Test the webserver on https
       ansible.builtin.uri:
         url: http://localhost:80
         return_content: true
-
-
-
-
-
-
-  
-
-
-
-    
-
-
-
-
 

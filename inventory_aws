@@ -1,0 +1,17 @@
+[aws_lab]
+controller.thenorvilles.com
+eda.thenorvilles.com
+hub.thenorvilles.com
+
+[controller]
+controller.thenorvilles.com
+
+[eda]
+eda.thenorvilles.com
+
+[hub]
+hub.thenorvilles.com
+
+[all:vars]
+ansible_ssh_private_key_file=./aap_aws.pem
+ansible_user=ec2-user
