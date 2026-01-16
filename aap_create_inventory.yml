@@ -24,3 +24,13 @@
         inventory: "The Rick James Inventory"
         state: present
       loop: "{{ homelab_hosts }}"
+
+    - name: Add a Homelab group 
+      ansible.controller.group:
+        name: HomeLab
+        description: Homelab Hosts
+        hosts: "{{ item }}"
+        inventory: "The Rick James Inventory"
+        state: present
+      loop: "{{ homelab_hosts }}"
+        
