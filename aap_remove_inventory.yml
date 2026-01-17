@@ -24,7 +24,6 @@
         inventory: "The Rick James Inventory"
         state: absent
         
-
     - name: Remove an inventory in AAP
       ansible.controller.inventory:
         name: "The Rick James Inventory"
