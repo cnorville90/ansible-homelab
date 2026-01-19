@@ -1,6 +1,6 @@
 ---
 - name: Just a simple Ping test for Ansible connectivity
-  hosts: cockpits
+  hosts: homelab
   gather_facts: false
 
   tasks:

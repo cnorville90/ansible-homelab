@@ -4,23 +4,5 @@ caesar.thenorvilles.com
 attila.thenorvilles.com
 hannibal.thenorvilles.com
 
-[cockpits]
-xerxes.thenorvilles.com 
-caesar.thenorvilles.com
-attila.thenorvilles.com
-hannibal.thenorvilles.com
-
 [all:vars]
 ansible_user=cnorville
-
-[controller]
-caesar.thenorvilles.com
-
-[hub]
-caesar.thenorvilles.com
-
-[eda]
-xerxes.thenorvilles.com
-
-[controller_vm]
-controller-vm.thenorvilles.com
