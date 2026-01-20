@@ -6,3 +6,10 @@ controller_projects:
     scm_url: https://github.com/cnorville90/ansible-crowdstrike.git
     scm_branch: main
     description: Crowdstrike Playbooks
+
+  - name: AAP - Homelab
+    organization: Default
+    scm_type: git
+    scm_url: https://github.com/cnorville90/ansible-homelab.git
+    scm_branch: main
+    description: AAP Homelab Playbooks
