@@ -1,0 +1,10 @@
+---
+controller_templates:
+- name: Simple Ping for Target Hosts
+  job_type: run
+  inventory: Homelab
+  execution_environment: "Default execution environment"
+  project: "AAP - Homelab"
+  playbook: simple-ping.yml
+  credentials:
+    - "Homelab - cnorville"
