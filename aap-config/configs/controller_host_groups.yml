@@ -1,0 +1,5 @@
+---
+controller_groups:
+- name: Homelab
+  description: Homelab Servers
+  inventory: Homelab

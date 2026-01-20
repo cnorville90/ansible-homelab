@@ -1,0 +1,10 @@
+---
+controller_hosts:
+  - name: xerxes.thenorvilles.com
+    inventory: Homelab
+  - name: caesar.thenorvilles.com
+    inventory: Homelab
+  - name: attila.thenorvilles.com
+    inventory: Homelab
+  - name: hannibal.thenorvilles.com
+    inventory: Homelab

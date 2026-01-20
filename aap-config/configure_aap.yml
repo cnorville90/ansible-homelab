@@ -3,6 +3,12 @@
   hosts: localhost
   connection: local
   gather_facts: false
+  vars: 
+    homelab_hosts:
+      - xerxes.thenorvilles.com
+      - caesar.thenorvilles.com
+      - hannibal.thenorvilles.com
+      - attila.thenorvilles.com
 
   tasks:
     - name: Load all configuration files
@@ -16,3 +22,4 @@
     - name: Configure AAP using dispatch role
       ansible.builtin.include_role:
         name: infra.aap_configuration.dispatch
+

@@ -1,7 +1,7 @@
 ---
 controller_projects:
   - name: Crowdstrike
-    organization: Norville Enterprises
+    organization: Default
     scm_type: git
     scm_url: https://github.com/cnorville90/ansible-crowdstrike.git
     scm_branch: main

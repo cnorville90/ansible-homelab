@@ -23,6 +23,7 @@
         name: "{{ item }}"
         inventory: "The Rick James Inventory"
         state: present
+        controller_host: xerxes.thenorvilles.com
       loop: "{{ homelab_hosts }}"
 
     - name: Add a Homelab group 
