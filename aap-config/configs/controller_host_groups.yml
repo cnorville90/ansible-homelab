@@ -3,3 +3,8 @@ controller_groups:
 - name: Homelab
   description: Homelab Servers
   inventory: Homelab
+  hosts:
+    - xerxes.thenorvilles.com
+    - attila.thenorvilles.com
+    - caesar.thenorvilles.com
+    - hannibal.thenorvilles.com
